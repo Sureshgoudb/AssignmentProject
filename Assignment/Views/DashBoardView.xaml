@@ -1,0 +1,39 @@
+﻿<Window x:Class="Assignment.Views.DashBoardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:Assignment.Views"
+        mc:Ignorable="d"
+        Title="DashBoardView" Height="450" Width="800">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction  Command="{Binding CloseCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Border BorderThickness="2">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70*"></ColumnDefinition>
+            <ColumnDefinition Width="30*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="listData" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding objectData,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Text="{Binding displayText}" />
+                        <TextBlock  Text="{Binding value}" Margin="5,0,0,0" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <Button Content="Clear" Grid.Row="0" Grid.Column="1"  Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding ClearCommand}"/>
+    </Grid>
+    </Border>
+</Window>
